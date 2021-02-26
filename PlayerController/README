@@ -1,0 +1,7 @@
+PlayerController
+
+//need to store player info that persists through the game, beyond a character's removal
+  //store score
+  //setup camera properties if PlayerController is UnPossess() pawn.
+  //set up a general hud
+  //player-specific input binds.
