@@ -18,14 +18,28 @@
 		
 
 #include "ArenaPlayer.h"
+#include "Camera/CameraComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/Controller.h"
+#include "Components/CapsuleComponent.h"
 
 // Sets default values
 AArenaPlayer::AArenaPlayer()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
+	
+	//setup camera
+	FPCameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
+	FPCameraComp->SetupAttachment(GetCapsuleComponent());
+	FPCameraComp->SetRelativeLocation(FVector(-39.56f, 1.75f, 64.f));	//cam position
+	FPCameraComp->bUsePawnControlRotation = true;	//for control
+
+	//setup triggercapsule
+	TriggerCapsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Trigger Capsule"));
+	TriggerCapsule->InitCapsuleSize(55.f, 96.f);
+	TriggerCapsule->SetCollisionProfileName(TEXT("Trigger"));
+	TriggerCapsule->SetupAttachment(RootComponent);
 
 	//default possess.
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
