@@ -10,6 +10,15 @@ UCLASS()
 class ARENA_API AArenaPlayer : public ACharacter
 {
 	GENERATED_BODY()
+	
+	//capsule component
+	UPROPERTY(VisibleAnywhere, Category = "Trigger Capsule")
+	class UCapsuleComponent* TriggerCapsule;	
+
+	//camera comp
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"));
+	class UCameraComponent* FPCameraComp;
+
 
 public:
 	// Sets default values for this character's properties
