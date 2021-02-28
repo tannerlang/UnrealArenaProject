@@ -21,6 +21,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/Controller.h"
+#include "GameFrameWork/InputSettings.h"
 #include "Components/CapsuleComponent.h"
 
 // Sets default values
@@ -35,6 +36,17 @@ AArenaPlayer::AArenaPlayer()
 	FPCameraComp->SetRelativeLocation(FVector(-39.56f, 1.75f, 64.f));	//cam position
 	FPCameraComp->bUsePawnControlRotation = true;	//for control
 
+	
+	//setup first person skeletal mesh
+	FPSMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FPS Mesh"));
+	FPSMesh->SetOnlyOwnerSee(true);
+	FPSMesh->SetupAttachment(FPCameraComp);
+	FPSMesh->bCastDynamicShadow = false;
+	FPSMesh->CastShadow = false;
+	FPSMesh->SetRelativeRotation(FRotator(1.9f, -19.19f, 5.2f));
+	FPSMesh->SetRelativeLocation(FVector(-0.5f, -4.4f, -155.7f));
+	
+	
 	//setup triggercapsule
 	TriggerCapsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Trigger Capsule"));
 	TriggerCapsule->InitCapsuleSize(55.f, 96.f);
