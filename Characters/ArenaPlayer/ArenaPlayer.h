@@ -6,18 +6,29 @@
 #include "GameFramework/Character.h"
 #include "ArenaPlayer.generated.h"
 
+
+class UInputComponent;
+class USkeletalMeshComponent;
+class UCameraComponent;
+class UCapsuleComponent;
+
 UCLASS()
 class ARENA_API AArenaPlayer : public ACharacter
 {
 	GENERATED_BODY()
 	
+	
+	//skeletal mesh for fps
+	UPROPERTY(VisibleDefaultsOnly, Category = "Mesh")
+	USkeletalMeshComponent* FPSMesh;
+	
 	//capsule component
 	UPROPERTY(VisibleAnywhere, Category = "Trigger Capsule")
-	class UCapsuleComponent* TriggerCapsule;	
+	UCapsuleComponent* TriggerCapsule;	
 
 	//camera comp
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"));
-	class UCameraComponent* FPCameraComp;
+	UCameraComponent* FPCameraComp;
 
 
 public:
@@ -45,4 +56,11 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 	float BaseLookUpAtRate;
+	
+	//return FPSMesh subobject
+	USkeletalMeshComponent* GetFPSMesh() const { return FPSMesh; }
+
+	//return FPCameraComp subobject
+	UCameraComponent* GetFPCameraComp() const { return FPCameraComp; }
+	
 };
