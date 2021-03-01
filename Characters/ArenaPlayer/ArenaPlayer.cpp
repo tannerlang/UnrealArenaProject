@@ -21,6 +21,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/Controller.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "GameFrameWork/InputSettings.h"
 #include "Components/CapsuleComponent.h"
 
@@ -131,4 +132,26 @@ void AArenaPlayer::TurnAtRate(float Value)
 void AArenaPlayer::LookUpAtRate(float Value)
 {
 	AddControllerPitchInput(Value * BaseLookUpAtRate * GetWorld()->GetDeltaSeconds());
+}
+
+//startcrouch def
+void AArenaPlayer::StartCrouch()
+{
+	if (!GetCharacterMovement()->IsCrouching())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Crouching"));
+		GetCharacterMovement()->bWantsToCrouch = true;
+		GetCharacterMovement()->Crouch();
+	}
+}
+
+//stop crouch def
+void AArenaPlayer::StopCrouch()
+{
+	if (GetCharacterMovement()->IsCrouching())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("UnCrouching"));
+		GetCharacterMovement()->bWantsToCrouch = false;
+		GetCharacterMovement()->UnCrouch();
+	}
 }
