@@ -50,6 +50,10 @@ public:
 	void MoveRight(float Value);
 	void TurnAtRate(float Value);
 	void LookUpAtRate(float Value);
+	
+	//crouch decs: check "Can Crouch" in editor in CharacterMovementComponent details pane.
+	void StartCrouch();
+	void StopCrouch();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 	float BaseTurnRate;
