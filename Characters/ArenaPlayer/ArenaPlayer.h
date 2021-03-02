@@ -7,21 +7,23 @@
 #include "ArenaPlayer.generated.h"
 
 
+
 class UInputComponent;
 class USkeletalMeshComponent;
 class UCameraComponent;
 class UCapsuleComponent;
 
+
+
 UCLASS()
 class ARENA_API AArenaPlayer : public ACharacter
 {
 	GENERATED_BODY()
-	
-	
+
 	//skeletal mesh for fps
 	UPROPERTY(VisibleDefaultsOnly, Category = "Mesh")
 	USkeletalMeshComponent* FPSMesh;
-	
+
 	//capsule component
 	UPROPERTY(VisibleAnywhere, Category = "Trigger Capsule")
 	UCapsuleComponent* TriggerCapsule;	
@@ -29,7 +31,6 @@ class ARENA_API AArenaPlayer : public ACharacter
 	//camera comp
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"));
 	UCameraComponent* FPCameraComp;
-
 
 public:
 	// Sets default values for this character's properties
@@ -47,24 +48,52 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void MoveForward(float Value);
+
 	void MoveRight(float Value);
+
 	void TurnAtRate(float Value);
+
 	void LookUpAtRate(float Value);
-	
-	//crouch decs: check "Can Crouch" in editor in CharacterMovementComponent details pane.
-	void StartCrouch();
-	void StopCrouch();
+
+	bool IsWalking();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 	float BaseTurnRate;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 	float BaseLookUpAtRate;
-	
+
+	//crouch decs: check "Can Crouch" in editor in CharacterMovementComponent details pane.
+	UFUNCTION()
+	void StartCrouch();
+
+	UFUNCTION()
+	void StopCrouch();
+
+	//walk decs
+	UFUNCTION()
+	void StartWalk();
+
+	UFUNCTION()
+	void StopWalk();
+
+	UPROPERTY(BlueprintReadOnly, Category = "Movement")
+	float WalkSpeed;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Movement")
+	float MaxCrouchspeed;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Movement")
+	float DefaultSpeed;
+
+public:
 	//return FPSMesh subobject
 	USkeletalMeshComponent* GetFPSMesh() const { return FPSMesh; }
 
 	//return FPCameraComp subobject
 	UCameraComponent* GetFPCameraComp() const { return FPCameraComp; }
-	
+
+private:
+
+	bool bIsWalking;
 };
