@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+//Arena.h
 
 #pragma once
 
@@ -85,6 +85,26 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Movement")
 	float DefaultSpeed;
+
+	//used to set the Ground Friction value
+	UPROPERTY(BlueprintReadOnly, Category = "Movement")
+	float SlowStop;
+
+	//used to set braking deceleration walking value
+	UPROPERTY(BlueprintReadOnly, Category = "Movement")
+	float ConstantDecel;
+
+	//used to set JumpZVelocity
+	UPROPERTY(BlueprintReadOnly, Category = "Movement")
+	float JumpSpeed;
+
+	//used to set AirControl
+	UPROPERTY(BlueprintReadOnly, Category = "Movement")
+	float AirMovement;
+	
+	//setup a faster falling speed, and shorter jump and fall when jumping while crouched.
+	//refactor strafing and forward movement to where a strafe and mouse movement to that direction can slightly maintain forward velocity in midair (bhop basics)
+	//start anims
 
 public:
 	//return FPSMesh subobject
