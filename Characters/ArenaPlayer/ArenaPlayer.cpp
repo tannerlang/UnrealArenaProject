@@ -66,9 +66,19 @@ AArenaPlayer::AArenaPlayer()
 	MaxCrouchspeed = 100.f;
 	WalkSpeed = 250.f;
 	DefaultSpeed = 500.f;
-
+	SlowStop = 1.62f;
+	ConstantDecel = GetCharacterMovement()->MaxAcceleration * 0.5;
+	JumpSpeed = DefaultSpeed;
+	AirMovement = 1;
+	
 	GetCharacterMovement()->MaxWalkSpeed = DefaultSpeed;
 	GetCharacterMovement()->MaxWalkSpeedCrouched = MaxCrouchspeed;
+	GetCharacterMovement()->GroundFriction = SlowStop;
+	GetCharacterMovement()->BrakingDecelerationWalking = ConstantDecel;
+	GetCharacterMovement()->JumpZVelocity = JumpSpeed;
+	GetCharacterMovement()->AirControl = AirMovement;
+	
+	
 }
 
 // Called when the game starts or when spawned
@@ -174,8 +184,10 @@ void AArenaPlayer::LookUpAtRate(float Value)
 //startcrouch def
 void AArenaPlayer::StartCrouch()
 {
+	
 	GetCharacterMovement()->MaxWalkSpeedCrouched = MaxCrouchspeed;
 	Crouch();
+	
 }
 
 //stop crouch def
@@ -188,3 +200,4 @@ bool AArenaPlayer::IsWalking()
 {
 	return bIsWalking;
 }
+
