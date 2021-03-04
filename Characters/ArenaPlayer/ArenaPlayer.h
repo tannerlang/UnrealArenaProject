@@ -101,9 +101,19 @@ public:
 	//used to set AirControl
 	UPROPERTY(BlueprintReadOnly, Category = "Movement")
 	float AirMovement;
+
+	//to set a new gravity default
+	UPROPERTY(BlueprintReadOnly, Category = "Movement")
+	float Grav;
+
 	
-	//setup a faster falling speed, and shorter jump and fall when jumping while crouched.
-	//refactor strafing and forward movement to where a strafe and mouse movement to that direction can slightly maintain forward velocity in midair (bhop basics)
+	
+	//refactor strafing and forward movement to where a strafe and mouse movement to that direction can slightly maintain forward velocity in midair, 
+	//print on screen debug message, get velocity.
+		//eventually transfer it over as a option in the hud. but for now, just using debug helper.
+	//modify CharacterMovementComponent::CalcVelocity() ???s
+		//limit the velocity that is the proction of the current velocity on acceleration
+		//no air friction on landing friction (bhop basics), and dont tick friction on landing frame, use DotProduct with
 	//start anims
 
 public:
