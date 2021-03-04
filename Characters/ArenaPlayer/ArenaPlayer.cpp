@@ -24,6 +24,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/InputSettings.h"
 #include "Components/CapsuleComponent.h"
+#include "DrawDebugHelpers.h"
+
 
 // Sets default values
 AArenaPlayer::AArenaPlayer()
@@ -70,7 +72,9 @@ AArenaPlayer::AArenaPlayer()
 	ConstantDecel = GetCharacterMovement()->MaxAcceleration * 0.5;
 	JumpSpeed = DefaultSpeed;
 	AirMovement = 1;
-	
+	Grav = 2.f;
+
+	GetCharacterMovement()->GravityScale = Grav;
 	GetCharacterMovement()->MaxWalkSpeed = DefaultSpeed;
 	GetCharacterMovement()->MaxWalkSpeedCrouched = MaxCrouchspeed;
 	GetCharacterMovement()->GroundFriction = SlowStop;
@@ -92,7 +96,6 @@ void AArenaPlayer::BeginPlay()
 void AArenaPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -200,4 +203,3 @@ bool AArenaPlayer::IsWalking()
 {
 	return bIsWalking;
 }
-
