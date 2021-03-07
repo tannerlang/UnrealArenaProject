@@ -19,13 +19,18 @@ class ARENA_API APlayerHUD : public AHUD
 
 
 public:
-	//constructor
-	APlayerHUD();
-
-
-public:
-
 	
-private:
+	void ShowMenu();
+	void RemoveMenu();
+
+
+protected:
+	//store ref to menu
+	TSharedPtr<class SMainMenu> MenuWidget;
+	//contain in this container to add and remove menu from speed.
+	TSharedPtr<class SWidget> MenuWidgetContainer;						
+
+	virtual void BeginPlay() override;
+
 
 };
