@@ -8,6 +8,9 @@
 	//score
 //setup camera properties for when unposess
 //setup hud
+	//speedometer
+		//create new widget class
+	
 
 //tell GameMode to use custom player controller
 
@@ -15,6 +18,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "Blueprint/UserWidget.h"
 #include "ArenaPlayerController.generated.h"
 
 UCLASS()
@@ -22,16 +26,11 @@ UCLASS()
 class ARENA_API ArenaPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-
-public:
-	ArenaPlayerController();
-	~ArenaPlayerController();
-
 protected:
 
-	virtual void SetupInputComponent(class UInputComponent* InInputComponent);
+	ArenaPlayerController();
 
-	void MoveForward(float Value);
+	virtual void SetupInputComponent() override;
 
-
+	void OpenMenu();
 };
