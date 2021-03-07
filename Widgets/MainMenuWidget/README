@@ -1,0 +1,5 @@
+build using SLATE in unreal engine c++
+
+created the basic main menu overlay and buttons.
+
+used references to this in PlayerHud to create the ability to toggle the main menu and use the main menu.
