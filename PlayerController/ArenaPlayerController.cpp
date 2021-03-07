@@ -4,33 +4,29 @@
 #include "Actor.h"
 #include "GameFramework/Character.h"
 #include "Components/InputComponent.h"
+#include "PlayerHUD.h"
 #include "Arena/ArenaPlayer.h"
-#include "ArenaGameModeBase.h"
+
 
 ArenaPlayerController::ArenaPlayerController()
 {
+
 }
 
-ArenaPlayerController::~ArenaPlayerController()
-{
-}
-
-//define handler function
-		//delegate implementation to pawn during runtime, when possessing
-void ArenaPlayerController::SetupInputComponent(class UInputComponent* InInputComponent)
+void ArenaPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 
-	InInputComponent->BindAxis("Forward", this, &ArenaPlayerController::MoveForward);
+	if (InputComponent)
+	{
+		InputComponent->BindAction("OpenMenu", IE_Pressed, this, &ArenaPlayerController::OpenMenu);
+	}
 }
 
-//define forward
-void ArenaPlayerController::MoveForward(float Value)
+void ArenaPlayerController::OpenMenu()
 {
-	
-	auto player = Cast<AArenaPlayer>(this->GetCharacter());
-	if (player)
+	if (APlayerHUD* PlayerHUD = Cast<APlayerHUD>(GetHUD()))
 	{
-		player->MoveForward(Value);
+		PlayerHUD->ShowMenu();
 	}
 }
