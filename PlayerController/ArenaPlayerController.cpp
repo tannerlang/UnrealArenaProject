@@ -20,6 +20,8 @@ void ArenaPlayerController::SetupInputComponent()
 	if (InputComponent)
 	{
 		InputComponent->BindAction("OpenMenu", IE_Pressed, this, &ArenaPlayerController::OpenMenu);
+
+		InputComponent->BindAction("ScoreBoard", IE_Pressed, this, &ArenaPlayerController::ScoreBoard);
 	}
 }
 
