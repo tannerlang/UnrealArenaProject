@@ -30,3 +30,8 @@ void ArenaPlayerController::OpenMenu()
 		PlayerHUD->ShowMenu();
 	}
 }
+
+void ArenaPlayerController::ScoreBoard()
+{
+	//something
+}
