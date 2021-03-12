@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-//derive from APlayerController
 //setup inputs
 	//define handler function
 		//delegate implementation to pawn during runtime, when possessing
@@ -33,4 +30,7 @@ protected:
 	virtual void SetupInputComponent() override;
 
 	void OpenMenu();
+
+	void ScoreBoard();
 };
+
